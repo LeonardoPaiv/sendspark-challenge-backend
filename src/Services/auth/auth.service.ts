@@ -31,7 +31,7 @@ export class AuthService {
         const createdUser = await this.usersRepository.save(userEntity);
         const payload = {sub: createdUser.id, createdUsername: createdUser.workEmail}
     
-        return {access_token: await this.jwtService.signAsync(payload)}
+        return {access_token: await this.jwtService.signAsync(payload), firstName: createdUser.firstName}
       }
     
       async login (loginDTO: ILoginDTO) {
@@ -39,7 +39,7 @@ export class AuthService {
     
         if (user && compareSync(loginDTO.password, user.password)) {
           const payload = {sub: user.id, username: user.workEmail}
-          return {access_token: await this.jwtService.signAsync(payload)}
+          return {access_token: await this.jwtService.signAsync(payload), firstName: user.firstName}
         }
         
         throw new UnauthorizedException();
