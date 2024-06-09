@@ -24,13 +24,11 @@ export class UsersService {
     })
   }
 
-  async findByEmail (email: string) {
-    const user = await this.usersRepository.findOne({
-      where: {
-        workEmail: email
-      }
-    })
-    return user
+  async findByEmail(email: string) {
+    const user = await this.usersRepository.createQueryBuilder("user")
+      .where("UPPER(user.workEmail) = UPPER(:email)", { email })
+      .getOne();
+    return user;
   }
 
   async findUsersPaginated(search: IPageSearch<IUserSearchDTO>): Promise<IPaginatedResult<IUserReturnDTO>> {
@@ -42,11 +40,11 @@ export class UsersService {
         .take(pageSize);
 
     if (filter?.company) {
-        queryBuilder.andWhere('user.company LIKE :company', { company: `%${filter.company}%` });
+        queryBuilder.andWhere('upper(user.company) LIKE upper(:company)', { company: `%${filter.company}%` });
     }
 
     if (filter?.jobTitle) {
-        queryBuilder.andWhere('user.jobTitle LIKE :jobTitle', { jobTitle: `%${filter.jobTitle}%` });
+        queryBuilder.andWhere('upper(user.jobTitle) LIKE upper(:jobTitle)', { jobTitle: `%${filter.jobTitle}%` });
     }
 
     const [data, total] = await queryBuilder.getManyAndCount();
