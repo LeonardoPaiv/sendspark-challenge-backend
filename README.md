@@ -9,7 +9,6 @@ This is the backend API for the sendspark challenge. It is built using NestJS, a
 - **PostgreSQL**: A powerful, open source object-relational database system.
 - **JWT**: JSON Web Tokens for authentication.
 - **Bcrypt**: Library to help you hash passwords.
-- **RxJS**: Reactive Extensions for JavaScript.
 
 ## Installation
 
@@ -26,9 +25,25 @@ To install the application, you need to have `yarn` installed on your machine. T
     npm install
     ```
 
+3. add the .env file to the root folder
+```sql
+sendspark-challenge-backend/
+├── src/                # Source files
+├── .env                # Provide security values
+├── .eslintrc.js        # ESLint configuration
+├── .prettierrc         # Prettier configuration
+├── nest-cli.json       # Nest CLI configuration
+├── package.json        # Project dependencies and scripts
+├── tsconfig.build.json # TypeScript build configuration
+├── tsconfig.json       # TypeScript configuration
+└── yarn.lock   
+```
+
 ## Running the Application
 
 To run the application in development mode, use the following command:
 ```sh
 npm run start
 ```
+
+The application will be available at: http://localhost:3000
