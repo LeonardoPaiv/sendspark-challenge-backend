@@ -1,6 +1,6 @@
 export interface IUserDTO {
     id?: number;
-    fistName: string;
+    firstName: string;
     lastName: string;
     company: string;
     jobTitle?: string;

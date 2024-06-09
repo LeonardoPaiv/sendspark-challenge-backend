@@ -6,7 +6,7 @@ export const toEntity = (userDTO: IUserDTO): User => {
     
     entity.id = userDTO?.id
     entity.company = userDTO.company
-    entity.firstName = userDTO.fistName
+    entity.firstName = userDTO.firstName
     entity.lastName = userDTO.lastName
     entity.jobTitle = userDTO?.jobTitle
     entity.password = userDTO.password;

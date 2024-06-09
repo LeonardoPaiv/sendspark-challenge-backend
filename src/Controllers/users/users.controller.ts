@@ -9,6 +9,7 @@ export class UsersController {
     constructor (private usersService: UsersService) {}
 
     @Post('/register')
+    @HttpCode(201)
     createUser (@Body() userDTO: IUserDTO) {
         return this.usersService.createUser(userDTO)
     }
