@@ -1,9 +1,11 @@
-import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, ParseIntPipe, Post, Res } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, ParseIntPipe, Post, Res, UseGuards } from '@nestjs/common';
 import { Response } from 'express';
 import { IPageSearch } from 'src/DTO/IPageSearch';
 import { IUserSearchDTO } from 'src/DTO/IUserSearchDTO';
+import { AuthGuard } from 'src/guards/logged/logged.guard';
 import { UsersService } from 'src/services/users/users.service';
 
+@UseGuards(AuthGuard)
 @Controller('users')
 export class UsersController {
 
